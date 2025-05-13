@@ -6,7 +6,7 @@
 /*   By: mnirska <mnirska@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 00:48:54 by mnirska           #+#    #+#             */
-/*   Updated: 2025/05/13 20:46:36 by mnirska          ###   ########.fr       */
+/*   Updated: 2025/05/13 23:49:54 by mnirska          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ t_list	*lst_new(int content);
 t_list	*lst_last(t_list *stack);
 int	lst_size(t_list *stack);
 
-int find_smallest_position(t_list **lst);
+t_list	*get_min(t_list **a);
+int	check_digit(char *av);
+
 
 #endif

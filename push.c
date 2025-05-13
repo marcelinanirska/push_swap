@@ -6,7 +6,7 @@
 /*   By: mnirska <mnirska@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 19:56:02 by mnirska           #+#    #+#             */
-/*   Updated: 2025/05/13 19:59:19 by mnirska          ###   ########.fr       */
+/*   Updated: 2025/05/13 23:17:30 by mnirska          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	pa(t_list **a, t_list **b, int *count)
 	t_list	*temp;
 
 	if (!(*b))
-		handle_error("Error.");
+		handle_error("Error");
 	temp = (*b)->next;
 	lst_addfront(a, *b);
 	*b = temp;
@@ -32,7 +32,7 @@ void	pb(t_list **a, t_list **b, int *count)
 	t_list	*temp;
 
 	if (!(*a))
-		handle_error("Error.");
+		handle_error("Error");
 	temp = (*a)->next;
 	lst_addfront(b, *a);
 	*a = temp;

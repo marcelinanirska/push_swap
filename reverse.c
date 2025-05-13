@@ -6,7 +6,7 @@
 /*   By: mnirska <mnirska@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 21:53:41 by mnirska           #+#    #+#             */
-/*   Updated: 2025/05/13 20:11:32 by mnirska          ###   ########.fr       */
+/*   Updated: 2025/05/13 23:18:23 by mnirska          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	reverse(t_list **a)
 	t_list	*lst;
 
 	if (!(*a) || !(*a)->next)
-		handle_error("Error.");
+		handle_error("Error");
 	lst = lst_last(*a);
 	lst->prev->next = NULL;
 	lst->prev = NULL;

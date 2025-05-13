@@ -6,7 +6,7 @@
 /*   By: mnirska <mnirska@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 11:38:04 by mnirska           #+#    #+#             */
-/*   Updated: 2025/05/13 18:40:23 by mnirska          ###   ########.fr       */
+/*   Updated: 2025/05/13 23:11:46 by mnirska          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,15 @@ static int	get_maxbits_lst(t_list **a)
 		max_b++;
 	return (max_b);
 }
+/* void test(t_list **a)
+{
+	t_list *tmp = *a;
+	while (tmp)
+	{
+		printf("%d = %d\n", tmp->i, tmp->content);
+		tmp = tmp->next;
+	}
+} */
 
 void	radix_sort(t_list **a, t_list **b, int *count)
 {
@@ -58,4 +67,5 @@ void	radix_sort(t_list **a, t_list **b, int *count)
 		while (lst_size(*b) != 0)
 			pa(a, b, count);
 	}
+	//test(a);
 }
