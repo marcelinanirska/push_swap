@@ -6,55 +6,62 @@
 /*   By: mnirska <mnirska@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 11:31:24 by mnirska           #+#    #+#             */
-/*   Updated: 2025/05/13 12:34:55 by mnirska          ###   ########.fr       */
+/*   Updated: 2025/05/13 21:21:44 by mnirska          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	sort_tree(t_list **lst)
+static void	sort_three(t_list **lst, int *count)
 {
 	while (is_sorted(lst) != 1)
 	{
 		if (((*lst)->i > (*lst)->next->i)
 			&& ((*lst)->i < (*lst)->next->next->i))
-			sa(lst);
+			sa(lst, count);
 		else if (((*lst)->i > ((*lst)->next->i))
 			&& ((*lst)->i > (*lst)->next->next->i))
-			ra(lst);
+			ra(lst, count);
 		else
-			rra(lst);
+			rra(lst, count);
 	}
 }
 
-static void	sort_four(t_list **a, t_list **b)
+static void	sort_four(t_list **a, t_list **b, int *count)
 {
-	if (is_order(a, 4) == 1)
+	if (is_order(a, 4, count) == 1)
 		return ;
-	rotate_to_min(a, 4);
-	pb(a, b);
+	rotate_to_min(a, 4, count, 0);
+	pb(a, b, count);
 	reset_index(a);
-	sort_tree(a);
-	pa(a, b);
+	sort_three(a, count);
+	pa(a, b, count);
 }
 
-void	simple_sort(t_list **a, t_list **b)
+static void	sort_five(t_list **a, t_list **b, int *count)
+{
+	if (is_order(a, 5, count) == 1)
+		return ;
+	rotate_to_min(a, 5, count, 0);
+	pb(a, b, count);
+	reset_index(a);
+	rotate_to_min(a, 4, count, 1);
+	pb(a, b, count);
+	reset_index(a);
+	sort_three(a, count);
+	pa(a, b, count);
+	pa(a, b, count);
+}
+
+void	simple_sort(t_list **a, t_list **b, int *count)
 {
 	int	size;
 
 	size = lst_size(*a);
 	if (size == 3)
-		sort_tree(a);
+		sort_three(a, count);
 	else if (size == 4)
-		sort_four(a, b);
+		sort_four(a, b, count);
 	else
-	{
-		if (is_order(a, 5) == 1)
-			return ;
-		rotate_to_min(a, 5);
-		pb(a, b);
-		reset_index(a);
-		sort_four(a, b);
-		pa(a, b);
-	}
+		sort_five(a, b, count);
 }

@@ -6,7 +6,7 @@
 /*   By: mnirska <mnirska@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 00:48:28 by mnirska           #+#    #+#             */
-/*   Updated: 2025/05/13 13:34:18 by mnirska          ###   ########.fr       */
+/*   Updated: 2025/05/13 20:16:12 by mnirska          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static int	check_input(int ac, char **av, t_list **a)
 			return (0);
 		while (split[j])
 		{
-			if (ft_atoi(split[j]) > INT_MAX
-				|| ft_atoi(split[j]) < INT_MIN)
-				return (0);
+			if (ft_atol(split[j]) > INT_MAX
+				|| ft_atol(split[j]) < INT_MIN)
+				handle_error("Error.");
 			lst_addback(a, lst_new(ft_atoi(split[j])));
 			j++;
 		}
@@ -69,28 +69,40 @@ static void	lst_clear(t_list **stack)
 	*stack = NULL;
 }
 
-int main(int ac, char **av)
+static void	validate_input(int ac, char **av, t_list **a)
+{
+	if (!check_input(ac, av, a))
+		handle_error("Error.");
+	if (check_duplicates(*a) == -1)
+		handle_error("Error.");
+}
+
+
+int	main(int ac, char **av)
 {
 	t_list	*a;
 	t_list	*b;
-	
+	int		count;
+
+	count = 0;
 	if (ac == 1)
-		handle_error("Error.");
+		return (0);
 	a = NULL;
 	b = NULL;
-	if (!(check_input(ac, av, &a)))
-		handle_error("Error.");
-	else if (check_duplicates(a) == -1)
-		handle_error("Error.");
-	else
+	validate_input(ac, av, &a);
+	ft_index(&a);
+	if (is_sorted(&a) == 1)
 	{
-		ft_index(&a);
-		if (is_sorted(&a) != 1 && lst_size(a) <= 5)
-			simple_sort(&a, &b);
-		else
-			radix_sort(&a, &b);
+		lst_clear(&a);
+		return (0);
 	}
+	if (lst_size(a) <= 5)
+		simple_sort(&a, &b, &count);
+	else
+		radix_sort(&a, &b, &count);
+	ft_printf("Total operations: %d\n", count);
 	lst_clear(&a);
 	lst_clear(&b);
 	return (0);
 }
+

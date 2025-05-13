@@ -6,7 +6,7 @@
 #    By: mnirska <mnirska@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/08 16:01:24 by mnirska           #+#    #+#              #
-#    Updated: 2025/05/13 12:54:18 by mnirska          ###   ########.fr        #
+#    Updated: 2025/05/13 19:02:57 by mnirska          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS = \
 	ft_strrchr.c ft_strncmp.c ft_memchr.c ft_memcmp.c ft_strnstr.c ft_atoi.c \
 	ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c \
 	ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c \
-	ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
+	ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_atol.c
 
 CC = gcc
 FLAGS = -Wall -Werror -Wextra

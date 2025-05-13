@@ -6,7 +6,7 @@
 /*   By: mnirska <mnirska@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 10:44:23 by mnirska           #+#    #+#             */
-/*   Updated: 2025/05/13 13:29:02 by mnirska          ###   ########.fr       */
+/*   Updated: 2025/05/13 21:21:58 by mnirska          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ int	is_sorted(t_list **lst)
 	return (1);
 }
 
-int	is_order(t_list **lst, int size)
+int	is_order(t_list **lst, int size, int *count)
 {
 	int	i;
 
 	i = 0;
 	while ((*lst)->i != 0)
 	{
-		ra(lst);
+		ra(lst, count);
 		i++;
 	}
 	if (is_sorted(lst) == 1)
@@ -65,7 +65,7 @@ int	is_order(t_list **lst, int size)
 	}
 	else
 		while (i-- > 0)
-			rra(lst);
+			rra(lst, count);
 	return (0);
 }
 
@@ -82,28 +82,51 @@ void	reset_index(t_list **a)
 	ft_index(a);
 }
 
-void	rotate_to_min(t_list **lst, int size)
-{
-	int	i;
+// void	rotate_to_min(t_list **lst, int size, int *count)
+// {
+// 	int	i;
 
-	i = 0;
-	while ((*lst)->i != 0)
+// 	i = 0;
+// 	while ((*lst)->i != 0)
+// 	{
+// 		ra(lst, count);
+// 		i++;
+// 	}
+// 	if ((i > (size / 2)))
+// 	{
+// 		if (size == 5 && i == 3)
+// 			ft_printf("rra\n");
+// 		ft_printf("rra\n");
+// 	}
+// 	else
+// 	{
+// 		while (i > 0)
+// 		{
+// 			ft_printf("ra\n");
+// 			i--;
+// 		}
+// 	}
+// }
+
+void	rotate_to_min(t_list **lst, int size, int *count, int target_index)
+{
+	t_list	*tmp;
+	int		pos;
+
+	tmp = *lst;
+	pos = 0;
+	while (tmp)
 	{
-		ra(lst);
-		i++;
+		if (tmp->i == target_index)
+			break ;
+		pos++;
+		tmp = tmp->next;
 	}
-	if ((i > (size / 2)))
-	{
-		if (size == 5 && i == 3)
-			ft_printf("rra\n");
-		ft_printf("rra\n");
-	}
+
+	if (pos <= size / 2)
+		while (pos-- > 0)
+			ra(lst, count);
 	else
-	{
-		while (i > 0)
-		{
-			ft_printf("ra\n");
-			i--;
-		}
-	}
+		while (pos++ < size)
+			rra(lst, count);
 }

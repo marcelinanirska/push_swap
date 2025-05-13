@@ -6,7 +6,7 @@
 /*   By: mnirska <mnirska@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 11:38:04 by mnirska           #+#    #+#             */
-/*   Updated: 2025/05/13 13:32:06 by mnirska          ###   ########.fr       */
+/*   Updated: 2025/05/13 18:40:23 by mnirska          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	get_maxbits_lst(t_list **a)
 	return (max_b);
 }
 
-void	radix_sort(t_list **a, t_list **b)
+void	radix_sort(t_list **a, t_list **b, int *count)
 {
 	t_list	*lst;
 	int		i;
@@ -51,36 +51,11 @@ void	radix_sort(t_list **a, t_list **b)
 		{
 			lst = *a;
 			if (((lst->i >> i) & 1) == 0)
-				pb(a, b);
+				pb(a, b, count);
 			else
-				ra(a);
+				ra(a, count);
 		}
 		while (lst_size(*b) != 0)
-			pa(a, b);
+			pa(a, b, count);
 	}
 }
-
-// void	radix_sort(t_list **a, t_list **b)
-// {
-// 	int	i, j, size, max_b;
-
-// 	size = lst_size(*a);
-// 	max_b = get_maxbits_lst(a);
-// 	i = 0;
-// 	while (i < max_b)
-// 	{
-// 		j = 0;
-// 		while (j < size)
-// 		{
-// 			if ((((*a)->i >> i) & 1) == 0)
-// 				pb(a, b);
-// 			else
-// 				ra(a);
-// 			j++;
-// 		}
-// 		while (*b)
-// 			pa(a, b);
-// 		i++;
-// 	}
-// }
-

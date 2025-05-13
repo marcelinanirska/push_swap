@@ -1,50 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rra_rrb_rrr.c                                      :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnirska <mnirska@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 21:53:41 by mnirska           #+#    #+#             */
-/*   Updated: 2025/05/13 13:08:45 by mnirska          ###   ########.fr       */
+/*   Created: 2025/05/13 19:56:02 by mnirska           #+#    #+#             */
+/*   Updated: 2025/05/13 19:59:19 by mnirska          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rra(t_list **a)
+void	pa(t_list **a, t_list **b, int *count)
 {
-	t_list	*lst;
+	t_list	*temp;
 
-	if (!(*a) || !(*a)->next)
+	if (!(*b))
 		handle_error("Error.");
-	lst = lst_last(*a);
-	lst->prev->next = NULL;
-	lst->prev = NULL;
-	lst->next = *a;
-	(*a)->prev = lst;
-	*a = (*a)->prev;
-	write(1, "rra\n", 4);
+	temp = (*b)->next;
+	lst_addfront(a, *b);
+	*b = temp;
+	if (*b)
+		(*b)->prev = NULL;
+	(*count)++;
+	write(1, "pa\n", 3);
 }
 
-void	rrb(t_list **b)
+void	pb(t_list **a, t_list **b, int *count)
 {
-	t_list	*lst;
+	t_list	*temp;
 
-	if (!(*b) || !(*b)->next)
+	if (!(*a))
 		handle_error("Error.");
-	lst = lst_last(*b);
-	lst->prev->next = NULL;
-	lst->prev = NULL;
-	lst->next = *b;
-	(*b)->prev = lst;
-	*b = (*b)->prev;
-	write(1, "rrb\n", 4);
-}
-
-void	rrr(t_list **a, t_list **b)
-{
-	rra(a);
-	rrb(b);
-	write(1, "rrr\n", 4);
+	temp = (*a)->next;
+	lst_addfront(b, *a);
+	*a = temp;
+	if (*a)
+		(*a)->prev = NULL;
+	(*count)++;
+	write(1, "pb\n", 3);
 }
