@@ -6,11 +6,11 @@
 /*   By: mnirska <mnirska@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 21:53:41 by mnirska           #+#    #+#             */
-/*   Updated: 2025/05/13 23:18:23 by mnirska          ###   ########.fr       */
+/*   Updated: 2025/05/14 18:39:49 by mnirska          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 static void	reverse(t_list **a)
 {

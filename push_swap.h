@@ -6,7 +6,7 @@
 /*   By: mnirska <mnirska@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 00:48:54 by mnirska           #+#    #+#             */
-/*   Updated: 2025/05/13 23:49:54 by mnirska          ###   ########.fr       */
+/*   Updated: 2025/05/14 18:36:59 by mnirska          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,15 @@ typedef struct s_list
 	struct s_list	*prev;
 }				t_list;
 
-
 void	handle_error(char *s);
 void	free_split(char **split);
 void	ft_index(t_list **a);
 int		is_sorted(t_list **lst);
-int		is_order(t_list **lst, int size, int *count);
-void	reset_index(t_list **a);
 void	rotate_to_min(t_list **lst, int size, int *count, int target_index);
 void	simple_sort(t_list **a, t_list **b, int *count);
 void	radix_sort(t_list **a, t_list **b, int *count);
+t_list	*get_min(t_list **a);
+int		check_digit(int ac, char **av);
 
 void	sa(t_list **a, int *count);
 void	sb(t_list **b, int *count);
@@ -57,10 +56,6 @@ void	lst_addfront(t_list **stack, t_list *news);
 void	lst_addback(t_list **stack, t_list *news);
 t_list	*lst_new(int content);
 t_list	*lst_last(t_list *stack);
-int	lst_size(t_list *stack);
-
-t_list	*get_min(t_list **a);
-int	check_digit(char *av);
-
+int		lst_size(t_list *stack);
 
 #endif

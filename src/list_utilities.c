@@ -6,78 +6,78 @@
 /*   By: mnirska <mnirska@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 12:30:35 by mnirska           #+#    #+#             */
-/*   Updated: 2025/05/13 12:41:10 by mnirska          ###   ########.fr       */
+/*   Updated: 2025/05/14 18:37:23 by mnirska          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-void	lst_addfront(t_list **stack, t_list *news)
+void	lst_addfront(t_list **lst, t_list *new)
 {
-	if (!stack || !news)
+	if (!lst || !new)
 		return ;
-	if (!(*stack))
+	if (!(*lst))
 	{
-		*stack = news;
-		(*stack)->prev = NULL;
-		(*stack)->next = NULL;
+		*lst = new;
+		(*lst)->prev = NULL;
+		(*lst)->next = NULL;
 		return ;
 	}
-	(*stack)->prev = news;
-	news->next = *stack;
-	*stack = news;
-	news->prev = NULL;
+	(*lst)->prev = new;
+	new->next = *lst;
+	*lst = new;
+	new->prev = NULL;
 }
 
-void	lst_addback(t_list **stack, t_list *news)
+void	lst_addback(t_list **lst, t_list *new)
 {
 	t_list	*tmp;
 
-	if (!stack || !news)
+	if (!lst || !new)
 		return ;
-	if (!(*stack))
+	if (!(*lst))
 	{
-		*stack = news;
-		(*stack)->prev = NULL;
-		(*stack)->next = NULL;
+		*lst = new;
+		(*lst)->prev = NULL;
+		(*lst)->next = NULL;
 		return ;
 	}
-	tmp = *stack;
+	tmp = *lst;
 	while (tmp->next)
 		tmp = tmp->next;
-	tmp->next = news;
-	news->prev = tmp;
+	tmp->next = new;
+	new->prev = tmp;
 }
 
 t_list	*lst_new(int content)
 {
-	t_list	*stack;
+	t_list	*lst;
 
-	stack = malloc(sizeof(t_list));
-	if (!stack)
+	lst = malloc(sizeof(t_list));
+	if (!lst)
 		return (NULL);
-	stack->content = content;
-	stack->i = -1;
-	stack->next = NULL;
-	stack->prev = NULL;
-	return (stack);
+	lst->content = content;
+	lst->i = -1;
+	lst->next = NULL;
+	lst->prev = NULL;
+	return (lst);
 }
 
-t_list	*lst_last(t_list *stack)
+t_list	*lst_last(t_list *lst)
 {
-	if (!stack)
+	if (!lst)
 		return (NULL);
-	while (stack->next)
-		stack = stack->next;
-	return (stack);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }
 
-int	lst_size(t_list *stack)
+int	lst_size(t_list *a)
 {
 	int		i;
 	t_list	*lst;
 
-	lst = stack;
+	lst = a;
 	i = 0;
 	while (lst)
 	{

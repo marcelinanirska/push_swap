@@ -6,11 +6,11 @@
 /*   By: mnirska <mnirska@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 20:36:40 by mnirska           #+#    #+#             */
-/*   Updated: 2025/05/13 19:59:28 by mnirska          ###   ########.fr       */
+/*   Updated: 2025/05/14 15:41:13 by mnirska          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 static void	swap(t_list **lst)
 {

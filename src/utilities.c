@@ -6,17 +6,19 @@
 /*   By: mnirska <mnirska@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 10:44:23 by mnirska           #+#    #+#             */
-/*   Updated: 2025/05/13 23:25:25 by mnirska          ###   ########.fr       */
+/*   Updated: 2025/05/14 18:40:12 by mnirska          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	free_split(char **split)
 {
 	int	i;
 
 	i = 0;
+	if (!split)
+		return ;
 	while (split[i])
 	{
 		free(split[i]);
@@ -30,6 +32,8 @@ int	is_sorted(t_list **lst)
 {
 	t_list	*temp;
 
+	if (!lst || !*lst)
+		return (-1);
 	temp = *lst;
 	while (temp->next)
 	{
@@ -54,7 +58,6 @@ void	rotate_to_min(t_list **lst, int size, int *count, int target_index)
 		pos++;
 		tmp = tmp->next;
 	}
-
 	if (pos <= size / 2)
 		while (pos-- > 0)
 			ra(lst, count);

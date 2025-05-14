@@ -6,11 +6,11 @@
 /*   By: mnirska <mnirska@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 11:21:23 by mnirska           #+#    #+#             */
-/*   Updated: 2025/05/13 22:58:56 by mnirska          ###   ########.fr       */
+/*   Updated: 2025/05/14 18:53:44 by mnirska          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 t_list	*get_min(t_list **a)
 {
@@ -42,6 +42,8 @@ void	ft_index(t_list **a)
 	int		index;
 
 	index = 0;
+	if (!a)
+		return ;
 	lst = get_min(a);
 	while (lst)
 	{

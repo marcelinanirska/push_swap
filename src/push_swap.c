@@ -6,31 +6,41 @@
 /*   By: mnirska <mnirska@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 00:48:28 by mnirska           #+#    #+#             */
-/*   Updated: 2025/05/13 23:51:49 by mnirska          ###   ########.fr       */
+/*   Updated: 2025/05/14 18:40:21 by mnirska          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
+
+static void	lst_clear(t_list **stack)
+{
+	if (!stack || !(*stack))
+		return ;
+	lst_clear(&(*stack)->next);
+	free(*stack);
+	*stack = NULL;
+}
 
 static int	check_input(int ac, char **av, t_list **a)
 {
-	int	i;
-	int	j;
-	char **split;
+	int		i;
+	int		j;
+	char	**split;
 
 	i = 1;
 	while (i < ac)
 	{
 		j = 0;
 		split = ft_split(av[i], 32);
-		if (!split[j])
-			return (0);
+		if (!split || split[j] == NULL)
+			return (free_split(split), 0);
 		while (split[j])
 		{
-			if (ft_atol(split[j]) > INT_MAX
-				|| ft_atol(split[j]) < INT_MIN)
-				handle_error("Error");
+			if (ft_atol(split[j]) > INT_MAX || ft_atol(split[j]) < INT_MIN)
+				return (free_split(split), lst_clear(a), 0);
 			lst_addback(a, lst_new(ft_atoi(split[j])));
+			if (!a)
+				return (free_split(split), lst_clear(a), 0);
 			j++;
 		}
 		free_split(split);
@@ -41,7 +51,7 @@ static int	check_input(int ac, char **av, t_list **a)
 
 static int	check_duplicates(t_list *lst)
 {
-	int temp;
+	int		temp;
 	t_list	*duplicate;
 
 	while (lst && lst->next)
@@ -57,16 +67,6 @@ static int	check_duplicates(t_list *lst)
 		lst = lst->next;
 	}
 	return (1);
-
-}
-
-static void	lst_clear(t_list **stack)
-{
-	if (!stack || !(*stack))
-		return ;
-	lst_clear(&(*stack)->next);
-	free(*stack);
-	*stack = NULL;
 }
 
 static void	validate_input(int ac, char **av, t_list **a)
@@ -74,11 +74,16 @@ static void	validate_input(int ac, char **av, t_list **a)
 	if (!check_input(ac, av, a))
 		handle_error("Error");
 	if (check_duplicates(*a) == -1)
+	{
+		lst_clear(a);
 		handle_error("Error");
-	if (!check_digit(av))
+	}
+	if (!check_digit(ac, av))
+	{
+		lst_clear(a);
 		handle_error("Error");
+	}
 }
-
 
 int	main(int ac, char **av)
 {
@@ -102,9 +107,7 @@ int	main(int ac, char **av)
 		simple_sort(&a, &b, &count);
 	else
 		radix_sort(&a, &b, &count);
-	//ft_printf("Total operations: %d\n", count);
 	lst_clear(&a);
 	lst_clear(&b);
 	return (0);
 }
-

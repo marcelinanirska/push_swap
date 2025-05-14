@@ -6,11 +6,11 @@
 /*   By: mnirska <mnirska@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 19:56:02 by mnirska           #+#    #+#             */
-/*   Updated: 2025/05/13 23:17:30 by mnirska          ###   ########.fr       */
+/*   Updated: 2025/05/14 15:40:45 by mnirska          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	pa(t_list **a, t_list **b, int *count)
 {
